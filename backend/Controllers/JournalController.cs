@@ -9,6 +9,7 @@ using System.Net;
 
 namespace BioField.Controllers
 {
+    [Route("[controller]")]
     public class JournalController : Controller
     {
         private readonly BioFieldContext _db;
@@ -17,7 +18,7 @@ namespace BioField.Controllers
         {
             _db = db;
         }
-        [HttpGet("/")]
+        [HttpGet("[action]")]
         public ActionResult Index()
         {
             List<Journals> model = _db.Journals.ToList();
@@ -25,7 +26,7 @@ namespace BioField.Controllers
         }
 
         [Authorize]
-        [HttpGet("/create")]
+        [HttpPost("[action]")]
         public ActionResult Create()
         {
             return View();

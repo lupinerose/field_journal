@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import App from './components/App';
+import { HashRouter } from 'react-router-dom';
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+        <HashRouter>
+          <App />
+        </HashRouter>, 
+        document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -14,14 +19,11 @@ ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 
 // import { AppContainer } from 'react-hot-loader';
-// import { HashRouter } from 'react-router-dom';
 //
 // const render = (Component) => {
 //   ReactDOM.render(
 //     <AppContainer>
-//       <HashRouter>
 //         <Component />
-//       </HashRouter>
 //     </AppContainer>,
 //     document.getElementById('root')
 //   );

@@ -1,6 +1,6 @@
 export default class BackendHelper {
     backendPostNewUser(newUser){
-        let url = 'http://localhost:5000/users/create';
+        let url = 'http://localhost:5000/api/Account/Create';
         let request = new XMLHttpRequest(); 
         let body = JSON.stringify(newUser);
         request.open('POST', url, true);
@@ -49,9 +49,10 @@ export default class BackendHelper {
           request.send();
         });
     }
-    backendPostNewProject(newJournal, token) {
+
+    backendPostNewJournal(newJournal, token) {
         return new Promise(function(resolve, reject) {
-          let url = 'http://localhost:5000/journals';
+          let url = 'http://localhost:5000/Journal/Create';
           let request = new XMLHttpRequest();
           let body = JSON.stringify(newJournal);
           request.open('POST', url, true);
