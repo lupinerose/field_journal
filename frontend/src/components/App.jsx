@@ -29,6 +29,10 @@ class App extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleCreateAcct = this.handleCreateAcct.bind(this);
     }
+    
+    componentWillMount() {
+        this.getJournalList();
+    }
 
     handleCreateAcct(newUser) {
         this.backendHelper.backendPostNewUser(newUser);
@@ -43,8 +47,9 @@ class App extends React.Component {
             this.setState({ token: parsedResponse.token });
         }).then(() => { this.getJournalList() });
     }
+
     getJournalList() {
-        let dataPromise = this.apiHelper.backendGetUserJournals(this.state.token);
+        let dataPromise = this.backendHelper.backendGetUserJournals();
         dataPromise.then((response) => {
             let parsedResponse = JSON.parse(response);
             console.log('JSON RESPONSE (getJournalList): ', parsedResponse);
@@ -63,14 +68,16 @@ class App extends React.Component {
     }
 
     handleAddingNewJournal(newJournal) {
-        let addJournalPromise = this.backendHelper.backendPostNewJournal(newJournal, this.state.token);
+        console.log(newJournal);
+        let addJournalPromise = this.backendHelper.backendPostNewJournal(newJournal);
         addJournalPromise.then((response) => {
-            newJournal.journalId = JSON.parse(response);
-            let newJournalId = v4();
-            let newMasterJournalList = Object.assign({}, this.state.masterJournalList, {
-                [newJournalId]: newJournal
-            });
-            this.setState({ masterJournalList: newMasterJournalList });
+            console.log(response)
+            // newJournal.journalId = JSON.parse(response);
+            // let newJournalId = v4();
+            // let newMasterJournalList = Object.assign({}, this.state.masterJournalList, {
+            //     [newJournalId]: newJournal
+            // });
+            // this.setState({ masterJournalList: newMasterJournalList });
         });
     }
 

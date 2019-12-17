@@ -26,6 +26,7 @@ namespace BioField.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("[action]")]
         public IActionResult Authenticate([FromBody] ApplicationUser userLoggingIn)
         {
             var user = _userService.Authenticate(userLoggingIn.Username, userLoggingIn.Password);

@@ -18,27 +18,31 @@ namespace BioField.Controllers
         {
             _db = db;
         }
+
         [HttpGet("[action]")]
-        public ActionResult Index()
+        public List<Journals> JournalList()
         {
             List<Journals> model = _db.Journals.ToList();
-            return View(model);
+            return model;
         }
 
-        [Authorize]
+        // [HttpGet("[action]")]
+        // public ActionResult Create()
+        // {
+        //     return View();
+        // }
+
         [HttpPost("[action]")]
-        public ActionResult Create()
+        public void Create([FromBody] Journals journal)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(Journals journal)
-        {
+            Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            Console.WriteLine(journal);
+            Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
             _db.Journals.Add(journal);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            // return RedirectToAction("Index");
         }
+        
         [HttpGet("/info/{id}")]
         public ActionResult Info(int id)
         {
@@ -48,6 +52,7 @@ namespace BioField.Controllers
             Console.WriteLine("----------");
             return View(thisJournal);
         }
+
         [HttpGet("/edit/{id}")]
         public ActionResult Edit(int id)
         {

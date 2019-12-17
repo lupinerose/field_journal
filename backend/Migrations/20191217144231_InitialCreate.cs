@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BioField.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +12,7 @@ namespace BioField.Migrations
                 columns: table => new
                 {
                     ApplicationUserId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Username = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
@@ -27,7 +28,7 @@ namespace BioField.Migrations
                 columns: table => new
                 {
                     JournalsId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true)
                 },
@@ -47,7 +48,7 @@ namespace BioField.Migrations
                 columns: table => new
                 {
                     EntriesId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     JournalsId = table.Column<int>(nullable: false),
                     DateTimeString = table.Column<string>(nullable: true),
                     Site = table.Column<string>(nullable: true),

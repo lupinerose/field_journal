@@ -34,10 +34,11 @@ namespace BioField
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services
-            .AddDbContext<BioFieldContext>(opt => opt
-            .UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
-
+            // services
+            // .AddDbContext<BioFieldContext>(opt => opt
+            // .UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<BioFieldContext>(opt =>
+                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             // In production, the React files will be served from this directory
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // Register the Swagger generator, defining 1 or more Swagger documents

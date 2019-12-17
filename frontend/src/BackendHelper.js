@@ -1,6 +1,6 @@
 export default class BackendHelper {
     backendPostNewUser(newUser){
-        let url = 'http://localhost:5000/api/Account/Create';
+        let url = 'http://localhost:5000/Account/Create';
         let request = new XMLHttpRequest(); 
         let body = JSON.stringify(newUser);
         request.open('POST', url, true);
@@ -31,33 +31,34 @@ export default class BackendHelper {
         request.send(body);
         });
     }
-    backendGetUserProjects(token) {
+
+    backendGetUserJournals() {
         return new Promise(function (resolve, reject) {
-          let url = 'http://localhost:5000/journals';
+          let url = 'http://localhost:5000/Journal/JournalList';
           let request = new XMLHttpRequest();
           request.open('GET', url, true);
           request.setRequestHeader('Content-Type', 'application/JSON');
-          request.setRequestHeader('Authorization', 'Bearer ' + token);
+          // request.setRequestHeader('Authorization', 'Bearer ' + token);
           request.onload = function () {
             if (this.status === 200) {
               resolve(request.response);
               console.log('Successful backend call to get user\'s projects');
             } else {
-              reject(Error(request.statusText));
+              console.log(request.statusText);
             }
           };
           request.send();
         });
     }
 
-    backendPostNewJournal(newJournal, token) {
+    backendPostNewJournal(newJournal) {
         return new Promise(function(resolve, reject) {
           let url = 'http://localhost:5000/Journal/Create';
           let request = new XMLHttpRequest();
           let body = JSON.stringify(newJournal);
           request.open('POST', url, true);
           request.setRequestHeader('Content-Type', 'application/JSON');
-          request.setRequestHeader('Authorization', 'Bearer ' + token);
+          // request.setRequestHeader('Authorization', 'Bearer ' + token);
           request.onload = function () {
             if (this.status === 200) {
               resolve(request.response);
@@ -68,6 +69,7 @@ export default class BackendHelper {
           request.send(body);
         });
     }
+
     backendPostNewNote(newEntry, token) {
         console.log(newEntry);
         return new Promise(function(resolve, reject) {
