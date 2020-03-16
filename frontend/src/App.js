@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  console.log("test trailer commits for multiple authors");
+  console.log("test for VSCode live share commits");
   return (
     <div className="App">
       <header className="App-header">
