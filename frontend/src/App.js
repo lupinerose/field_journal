@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  console.log("test 6 for VSCode live share");
+  console.log("test 7 for VSCode live share");
   return (
     <div className="App">
       <header className="App-header">
