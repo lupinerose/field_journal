@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  console.log("test trailer commits for multiple authors");
   return (
     <div className="App">
       <header className="App-header">
